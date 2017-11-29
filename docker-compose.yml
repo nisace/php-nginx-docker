@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  webserver:
+    image: nginx:1.13
+    ports:
+      - "80:80"
+    volumes:
+      - "./configuration/webserver/nginx.conf:/etc/nginx/nginx.conf"
+      - "./application/backend:/var/www/back:ro"
+
+  php:
+      image: php:7.1.10-fpm
+      volumes:
+          - "./application/backend:/var/www/back:ro"
